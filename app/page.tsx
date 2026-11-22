@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { submitQuoteForm } from "./actions";
 
 export default function Home() {
   return (
@@ -16,7 +16,7 @@ export default function Home() {
 
         {/* White Card Container */}
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-gray-200">
-          <form className="space-y-6">
+          <form action={submitQuoteForm} className="space-y-6">
             {/* Step 3: Form inputs will go right here */}
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700">
