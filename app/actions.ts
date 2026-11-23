@@ -1,4 +1,6 @@
 "use server";
+import { revalidatePath } from "next/cache";
+import { db } from "@/lib/db";
 
 export async function submitQuoteForm(formData: FormData) {
   // get the form data from the FormData object
@@ -19,6 +21,15 @@ export async function submitQuoteForm(formData: FormData) {
   }
   
 
-  // Here you can handle the form submission, e.g., save to a database or send an email.
-  console.log("Form submitted:", { name: name.trim(), email: email.trim(), projectType, details: details.trim() });
+  await db.orm.public.Quote.create({
+    
+      name,
+      email,
+      projectType,
+      details,
+    });
+
+  revalidatePath("/"); // Revalidate the home page to reflect the new quote submission
+
+  console.log("Quote form submitted successfully:", { name, email, projectType, details });  
 }

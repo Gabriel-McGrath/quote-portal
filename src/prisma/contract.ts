@@ -43,6 +43,7 @@ export const contract = defineContract({}, ({ field, model, rel, gen, type }) =>
       Post: Post.relations({
         author: rel.belongsTo(User, { from: 'authorId', to: 'id' }),
       }),
+      Quote,
     },
   };
 });
